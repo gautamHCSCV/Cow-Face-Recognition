@@ -259,7 +259,8 @@ def Angular_evaluation(model,test_loader, threshold = 0.36, num_negative_samples
                     negative_out = model(negative_img)
                     d2 = cdist(anchor_out, negative_out).cpu().detach().numpy()[0]
                     diff_distance.append(d2)
-                    if d2<=threshold:
+                    
+                    if d2>=threshold: # this means that the images are of same class
                         break
                     if i == num_negative_samples-1:
                         correct += 1
